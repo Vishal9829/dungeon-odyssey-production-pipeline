@@ -82,7 +82,11 @@ def _load_clients() -> List[Dict]:
             pass
 
     for i in range(1, 6):
-        k = _get_secret(f"NVIDIA_KEY_{i}")
+        k = _get_secret(f"NIM_API_KEY_{i}")
+        if not k:
+            k = _get_secret(f"NVIDIA_KEY_{i}")
+        if not k and i == 1:
+            k = _get_secret("NIM_API_KEY")
         if not k and i == 1:
             k = _get_secret("NVIDIA_API_KEY")
         if k:
@@ -94,7 +98,7 @@ def _load_clients() -> List[Dict]:
                 }
             )
     if not clients:
-        raise RuntimeError("No API keys found. Set GEMINI_API_KEY and/or NVIDIA_KEY_1.")
+        raise RuntimeError("No API keys found. Set GEMINI_API_KEY and/or NIM_API_KEY_1.")
     return clients
 
 

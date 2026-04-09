@@ -53,7 +53,11 @@ def load_api_clients():
     
     # NVIDIA NIM
     for i in range(1, 6):
-        nv_key = os.getenv(f"NVIDIA_KEY_{i}")
+        nv_key = os.getenv(f"NIM_API_KEY_{i}")
+        if not nv_key:
+            nv_key = os.getenv(f"NVIDIA_KEY_{i}")
+        if not nv_key and i == 1:
+            nv_key = os.getenv("NIM_API_KEY")
         if not nv_key and i == 1:
             nv_key = os.getenv("NVIDIA_API_KEY")
         if nv_key:
