@@ -28,8 +28,6 @@ from utils.colab_weebcentral import (
     download_chapters_as_images,
     install_colab_dependencies,
     print_best_tile_tweaks,
-    stitch_all_chapters,
-    clean_raw_images,
 )
 from utils.youtube_metadata import YouTubeMetadataGenerator
 from video.chapter_markers import ChapterMarkerEngine
@@ -199,14 +197,14 @@ def run_weebcentral_pipeline(
     os.makedirs(series_root, exist_ok=True)
     os.makedirs(download_root, exist_ok=True)
 
-    # 1) Download + tile prep
+    # 1) Download using original downloader output (raw page images only).
     output_dir, chapters, manga_info = download_chapters_as_images(
         series_url=series_url,
         selection=chapter_selection,
         output_dir=download_root,
     )
-    stitch_all_chapters(output_dir, max_stitched_height=50000, jpeg_quality=90)
-    clean_raw_images(output_dir)
+    # Important: do NOT stitch or delete raw pages here.
+    # OCR is more stable on original page images and avoids Tesseract "image too large" errors.
     print_best_tile_tweaks()
 
     # 2) Dynamic config paths per manhua
