@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data
+*.json
+*.mp4
+*.wav
+*.png
+*.jpg
+tile s/
+output/
+pipeline_output*/
+
+# API Keys
+.env
+secrets/
+*_key*
+*_token*
+
+# System
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Large files
+*.zip
+*.tar.gz
+*.7z
+
+# Logs
+*.log
+logs/
